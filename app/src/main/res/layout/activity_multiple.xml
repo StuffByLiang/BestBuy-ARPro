@@ -33,7 +33,7 @@
       android:gravity="center|bottom">
 
     <Button
-        android:id="@+id/addCartButton"
+        android:id="@+id/tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/product"
@@ -46,7 +46,7 @@
         android:onClick="toggleTv1" />
 
     <Button
-        android:id="@+id/viewProductButton"
+        android:id="@+id/tv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/product"
