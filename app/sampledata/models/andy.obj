@@ -1,7 +1,7 @@
 # This file uses centimeters as units for non-parametric coordinates.
 # Blender v2.78 (sub 0) OBJ File: ''
 # www.blender.org
-mtllib andy.mtl
+mtllib tv.mtl
 g default
 v 0.036531 5.203676 -0.001768
 v 0.035000 5.204560 -0.002500
@@ -3740,7 +3740,7 @@ vn 0.838785 0.248824 0.484280
 vn 0.968551 0.248815 0.000000
 vn -0.000000 1.000000 0.000000
 s 1
-g Andy_GEO
+g tv_GEO
 f 1/1/1 2/2/2 10/10/3 9/9/4
 f 2/2/2 3/3/5 11/11/6 10/10/3
 f 3/3/5 4/4/7 12/927/8 11/11/6

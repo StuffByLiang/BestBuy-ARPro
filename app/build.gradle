@@ -55,8 +55,8 @@ dependencies {
 
 apply plugin: 'com.google.ar.sceneform.plugin'
 
-sceneform.asset('sampledata/models/andy.obj',
-        'default',
-        'sampledata/models/andy.sfa',
-        'src/main/res/raw/andy')
 
+sceneform.asset('sampledata/models/flattv.obj',
+        'default',
+        'sampledata/models/flattv.sfa',
+        'src/main/res/raw/flattv')
