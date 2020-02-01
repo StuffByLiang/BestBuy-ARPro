@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -26,13 +25,13 @@
     <Button
         android:id="@+id/viewProductButton"
         android:padding="10dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:textColor="#FFFFFF"
         android:layout_margin="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/customDimensionsInput"
         android:layout_centerHorizontal="true"
-        android:text="View product of this size" />
+        android:text="Compare these products" />
 
 </RelativeLayout>

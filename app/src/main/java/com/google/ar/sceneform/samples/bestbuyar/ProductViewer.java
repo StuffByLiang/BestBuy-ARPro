@@ -18,6 +18,7 @@ package com.google.ar.sceneform.samples.bestbuyar;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ public class ProductViewer extends AppCompatActivity {
   private static final String TAG = ProductViewer.class.getSimpleName();
   private static final double MIN_OPENGL_VERSION = 3.0;
 
+
   private ArFragment arFragment;
   private ModelRenderable tvRenderable;
 
@@ -54,6 +56,9 @@ public class ProductViewer extends AppCompatActivity {
   // FutureReturnValueIgnored is not valid
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
+  Intent intent = getIntent();
+  int DIMENSIONS = intent.getIntExtra("com.google.ar.sceneform.samples.bestbuyar",0);
 
     if (!checkIsSupportedDeviceOrFinish(this)) {
       return;
