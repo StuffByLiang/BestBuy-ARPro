@@ -27,6 +27,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
@@ -55,7 +56,27 @@ public class ProductViewer extends AppCompatActivity {
 
   private ArFragment arFragment;
   private ModelRenderable tvRenderable;
+  private Boolean canRender = true;
+  private TransformableNode tv;
+  private int DIMENSIONS;
 
+    TextView text;
+
+  public void minus(View view) {
+      DIMENSIONS -= 2;
+      float scaling = 0.0038f * DIMENSIONS;
+      tv.getScaleController().setMinScale(scaling);
+      tv.getScaleController().setMaxScale(scaling+0.0001f);
+      text.setText(DIMENSIONS + " \"");
+  }
+
+    public void plus(View view) {
+        DIMENSIONS += 2;
+        float scaling = 0.0038f * DIMENSIONS;
+        tv.getScaleController().setMinScale(scaling);
+        tv.getScaleController().setMaxScale(scaling+0.0001f);
+        text.setText(DIMENSIONS + " \"");
+    }
 
     @Override
   @SuppressWarnings({"AndroidApiChecker", "FutureReturnValueIgnored"})
@@ -65,7 +86,7 @@ public class ProductViewer extends AppCompatActivity {
     super.onCreate(savedInstanceState);
 
   Intent intent = getIntent();
-  int DIMENSIONS = intent.getIntExtra("com.google.ar.sceneform.samples.bestbuyar",0);
+  DIMENSIONS = intent.getIntExtra("com.google.ar.sceneform.samples.bestbuyar",0);
 
     if (!checkIsSupportedDeviceOrFinish(this)) {
       return;
@@ -73,6 +94,9 @@ public class ProductViewer extends AppCompatActivity {
 
     setContentView(R.layout.activity_ux);
     arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
+    text = findViewById(R.id.text);
+
+    text.setText(DIMENSIONS + " \"");
 
     // When you build a Renderable, Sceneform loads its resources in the background while returning
     // a CompletableFuture. Call thenAccept(), handle(), or check isDone() before calling get().
@@ -104,8 +128,7 @@ public class ProductViewer extends AppCompatActivity {
           anchorNode.setParent(arFragment.getArSceneView().getScene());
 
           // Create the transformable tv and add it to the anchor.
-          TransformableNode tv = new TransformableNode(arFragment.getTransformationSystem());
-            float scaling = 0.0038f * DIMENSIONS;
+          tv = new TransformableNode(arFragment.getTransformationSystem());
 //            tv.setLocalScale(new Vector3(0.0038f * 1, 0.0038f * 1, 0.0038f * 1));
 //            tv.getScaleController().setMaxScale(scaling);
 //            tv.getScaleController().setMinScale(scaling);
@@ -122,10 +145,13 @@ public class ProductViewer extends AppCompatActivity {
           tv.setParent(anchorNode);
           tv.setRenderable(tvRenderable);
 
+          float scaling = 0.0038f * DIMENSIONS;
           tv.getScaleController().setMinScale(scaling);
           tv.getScaleController().setMaxScale(scaling+0.0001f);
           tv.select();
         });
+
+        canRender = false;
   }
 
   /**
