@@ -29,7 +29,7 @@ public class CompareActivity extends AppCompatActivity {
     }
 
     public void openProductViewer() {
-        Intent intent = new Intent(this, ProductViewer.class);
+        Intent intent = new Intent(this, MultipleProductViewer.class);
         startActivity(intent);
     }
 

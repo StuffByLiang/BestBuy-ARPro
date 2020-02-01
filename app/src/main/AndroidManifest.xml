@@ -33,6 +33,7 @@
         <activity android:name=".TV2Activity" />
         <activity android:name=".TV3Activity" />
         <activity android:name=".ProductViewer" />
+        <activity android:name=".MultipleProductViewer" />
         <!--
          Indicates that this app requires Google Play Services for AR ("AR Required") and causes
              the Google Play Store to download and intall Google Play Services for AR along with
