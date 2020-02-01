@@ -38,6 +38,8 @@ import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
+import android.view.View;
+
 
 /**
  * This is an example activity that uses the Sceneform UX package to make common AR tasks easier.
@@ -46,11 +48,51 @@ public class ProductViewer extends AppCompatActivity {
   private static final String TAG = ProductViewer.class.getSimpleName();
   private static final double MIN_OPENGL_VERSION = 3.0;
 
+  private final int TV1 = 0;
+  private final int TV2 = 1;
+
 
   private ArFragment arFragment;
   private ModelRenderable tvRenderable;
+    private ModelRenderable tv2Renderable;
 
-  @Override
+  private int tvType = 0;
+
+    public void toggleTv1(View view) {
+        tvType = TV1;
+    }
+
+    public void toggleTv2(View view) {
+        // Do something in response to button click
+        tvType = TV2;
+    }
+
+    private void createTv(HitResult hitResult) {
+        // Create the Anchor.
+        Anchor anchor = hitResult.createAnchor();
+        AnchorNode anchorNode = new AnchorNode(anchor);
+        anchorNode.setParent(arFragment.getArSceneView().getScene());
+
+        // Create the transformable tv and add it to the anchor.
+        TransformableNode tv = new TransformableNode(arFragment.getTransformationSystem());
+        tv.setParent(anchorNode);
+        float scaling=1;
+        switch (tvType) {
+            case TV1:
+                scaling = 0.0038f * 90;
+                tv.setRenderable(tvRenderable);
+                break;
+            case TV2:
+                scaling = 0.0022f * 32;
+                tv.setRenderable(tv2Renderable);
+        }
+
+        tv.getScaleController().setMinScale(scaling);
+        tv.getScaleController().setMaxScale(scaling+0.0001f);
+        tv.select();
+    }
+
+    @Override
   @SuppressWarnings({"AndroidApiChecker", "FutureReturnValueIgnored"})
   // CompletableFuture requires api level 24
   // FutureReturnValueIgnored is not valid
@@ -82,42 +124,29 @@ public class ProductViewer extends AppCompatActivity {
               return null;
             });
 
+    ModelRenderable.builder()
+        .setSource(this, R.raw.tv2)
+        .build()
+        .thenAccept(renderable -> tv2Renderable = renderable)
+        .exceptionally(
+                throwable -> {
+                    Toast toast =
+                            Toast.makeText(this, "Unable to load tv2 renderable", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                    return null;
+                });
+
     arFragment.setOnTapArPlaneListener(
         (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
-          if (tvRenderable == null) {
-            return;
-          }
+            if (tvRenderable == null) {
+                return;
+            }
 
 //            Camera camera = arFragment.getArSceneView().getScene().getCamera();
 //            camera.setLocalRotation(Quaternion.axisAngle(Vector3.right(), -30.0f));
 
-          // Create the Anchor.
-          Anchor anchor = hitResult.createAnchor();
-          AnchorNode anchorNode = new AnchorNode(anchor);
-          anchorNode.setParent(arFragment.getArSceneView().getScene());
-
-          // Create the transformable tv and add it to the anchor.
-          TransformableNode tv = new TransformableNode(arFragment.getTransformationSystem());
-            float scaling = 0.0038f * DIMENSIONS;
-//            tv.setLocalScale(new Vector3(0.0038f * 1, 0.0038f * 1, 0.0038f * 1));
-//            tv.getScaleController().setMaxScale(scaling);
-//            tv.getScaleController().setMinScale(scaling);
-//
-//            if (plane.getType() == Plane.Type.VERTICAL) {
-//
-//                Vector3 anchor2 = anchorNode.getLeft();
-//                tv.setLookDirection(Vector3.left(), anchor2);
-//
-//                Vector3 anchor1 = anchorNode.getDown();
-//                tv.setLookDirection(Vector3.down(), anchor1);
-//            }
-
-          tv.setParent(anchorNode);
-          tv.setRenderable(tvRenderable);
-
-          tv.getScaleController().setMinScale(scaling);
-          tv.getScaleController().setMaxScale(scaling+0.0001f);
-          tv.select();
+            createTv(hitResult);
         });
   }
 

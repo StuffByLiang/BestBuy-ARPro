@@ -61,3 +61,9 @@ sceneform.asset('sampledata/models/flattv.obj',
         'default',
         'sampledata/models/flattv.sfa',
         'src/main/res/raw/flattv')
+
+
+sceneform.asset('sampledata/models/tv2.fbx',
+        'default',
+        'sampledata/models/tv2.sfa',
+        'src/main/res/raw/tv2')
