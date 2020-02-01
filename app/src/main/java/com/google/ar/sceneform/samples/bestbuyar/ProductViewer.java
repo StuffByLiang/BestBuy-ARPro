@@ -26,6 +26,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
+import android.widget.Button;
 import android.widget.Toast;
 import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
@@ -54,17 +55,6 @@ public class ProductViewer extends AppCompatActivity {
 
   private ArFragment arFragment;
   private ModelRenderable tvRenderable;
-
-  private int tvType = 0;
-
-    public void toggleTv1(View view) {
-        tvType = TV1;
-    }
-
-    public void toggleTv2(View view) {
-        // Do something in response to button click
-        tvType = TV2;
-    }
 
 
     @Override

@@ -19,6 +19,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.ar.core.Anchor;
@@ -55,13 +57,19 @@ public class MultipleProductViewer extends AppCompatActivity {
 
   private int tvType = 0;
 
+    private Button button1 = (Button) findViewById(R.id.tv1);
+    private Button button2 = (Button) findViewById(R.id.tv2);
+
     public void toggleTv1(View view) {
         tvType = TV1;
+        button1.setBackgroundColor(Color.YELLOW);
+        button2.setBackgroundColor(Color.BLUE);
     }
 
     public void toggleTv2(View view) {
-        // Do something in response to button click
         tvType = TV2;
+        button2.setBackgroundColor(Color.YELLOW);
+        button1.setBackgroundColor(Color.BLUE);
     }
 
     private void createTv(HitResult hitResult) {
