@@ -49,6 +49,12 @@ public class HomepageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) { openCustom(); }
         });
+
+        Button compare = (Button) findViewById(R.id.viewCompare);
+        compare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { openCompare(); }
+        });
     }
 
     public void openTV1() {
@@ -67,6 +73,11 @@ public class HomepageActivity extends AppCompatActivity {
     }
 
     public void openCustom() {
+        Intent intent = new Intent(this, Custom.class);
+        startActivity(intent);
+    }
+
+    public void openCompare() {
         Intent intent = new Intent(this, Custom.class);
         startActivity(intent);
     }
