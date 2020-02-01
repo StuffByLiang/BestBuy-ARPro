@@ -14,5 +14,19 @@
    limitations under the License.
 -->
 <resources>
-  <style name="AppTheme" parent="Theme.AppCompat.Light"/>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light" />
+
+    <color name="colorPrimary">#0046BE</color>
+    <color name="colorPrimaryDark">#001E73</color>
+    <color name="colorAccent">#FFF200</color>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
