@@ -26,26 +26,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Toast;
+
 import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
-import com.google.ar.sceneform.Camera;
-import com.google.ar.sceneform.Node;
-import com.google.ar.sceneform.math.Quaternion;
-import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
-import android.view.View;
 
 
 /**
  * This is an example activity that uses the Sceneform UX package to make common AR tasks easier.
  */
-public class ProductViewer extends AppCompatActivity {
-  private static final String TAG = ProductViewer.class.getSimpleName();
+public class MultipleProductViewer extends AppCompatActivity {
+  private static final String TAG = MultipleProductViewer.class.getSimpleName();
   private static final double MIN_OPENGL_VERSION = 3.0;
 
   private final int TV1 = 0;
@@ -54,6 +51,7 @@ public class ProductViewer extends AppCompatActivity {
 
   private ArFragment arFragment;
   private ModelRenderable tvRenderable;
+    private ModelRenderable tv2Renderable;
 
   private int tvType = 0;
 
@@ -66,6 +64,30 @@ public class ProductViewer extends AppCompatActivity {
         tvType = TV2;
     }
 
+    private void createTv(HitResult hitResult) {
+        // Create the Anchor.
+        Anchor anchor = hitResult.createAnchor();
+        AnchorNode anchorNode = new AnchorNode(anchor);
+        anchorNode.setParent(arFragment.getArSceneView().getScene());
+
+        // Create the transformable tv and add it to the anchor.
+        TransformableNode tv = new TransformableNode(arFragment.getTransformationSystem());
+        tv.setParent(anchorNode);
+        float scaling=1;
+        switch (tvType) {
+            case TV1:
+                scaling = 0.0038f * 90;
+                tv.setRenderable(tvRenderable);
+                break;
+            case TV2:
+                scaling = 0.0022f * 32;
+                tv.setRenderable(tv2Renderable);
+        }
+
+        tv.getScaleController().setMinScale(scaling);
+        tv.getScaleController().setMaxScale(scaling+0.0001f);
+        tv.select();
+    }
 
     @Override
   @SuppressWarnings({"AndroidApiChecker", "FutureReturnValueIgnored"})
@@ -81,7 +103,7 @@ public class ProductViewer extends AppCompatActivity {
       return;
     }
 
-    setContentView(R.layout.activity_ux);
+    setContentView(R.layout.activity_multiple);
     arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
 
     // When you build a Renderable, Sceneform loads its resources in the background while returning
@@ -99,42 +121,29 @@ public class ProductViewer extends AppCompatActivity {
               return null;
             });
 
+    ModelRenderable.builder()
+        .setSource(this, R.raw.tv2)
+        .build()
+        .thenAccept(renderable -> tv2Renderable = renderable)
+        .exceptionally(
+                throwable -> {
+                    Toast toast =
+                            Toast.makeText(this, "Unable to load tv2 renderable", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                    return null;
+                });
+
     arFragment.setOnTapArPlaneListener(
         (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
-          if (tvRenderable == null) {
-            return;
-          }
+            if (tvRenderable == null) {
+                return;
+            }
 
 //            Camera camera = arFragment.getArSceneView().getScene().getCamera();
 //            camera.setLocalRotation(Quaternion.axisAngle(Vector3.right(), -30.0f));
 
-          // Create the Anchor.
-          Anchor anchor = hitResult.createAnchor();
-          AnchorNode anchorNode = new AnchorNode(anchor);
-          anchorNode.setParent(arFragment.getArSceneView().getScene());
-
-          // Create the transformable tv and add it to the anchor.
-          TransformableNode tv = new TransformableNode(arFragment.getTransformationSystem());
-            float scaling = 0.0038f * DIMENSIONS;
-//            tv.setLocalScale(new Vector3(0.0038f * 1, 0.0038f * 1, 0.0038f * 1));
-//            tv.getScaleController().setMaxScale(scaling);
-//            tv.getScaleController().setMinScale(scaling);
-//
-//            if (plane.getType() == Plane.Type.VERTICAL) {
-//
-//                Vector3 anchor2 = anchorNode.getLeft();
-//                tv.setLookDirection(Vector3.left(), anchor2);
-//
-//                Vector3 anchor1 = anchorNode.getDown();
-//                tv.setLookDirection(Vector3.down(), anchor1);
-//            }
-
-          tv.setParent(anchorNode);
-          tv.setRenderable(tvRenderable);
-
-          tv.getScaleController().setMinScale(scaling);
-          tv.getScaleController().setMaxScale(scaling+0.0001f);
-          tv.select();
+            createTv(hitResult);
         });
   }
 

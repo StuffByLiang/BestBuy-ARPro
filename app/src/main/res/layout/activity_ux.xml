@@ -23,39 +23,5 @@
       android:id="@+id/ux_fragment"
       android:layout_width="match_parent"
       android:layout_height="match_parent" />
-  <LinearLayout
-      android:id="@+id/LinearLayout02"
-      android:orientation="horizontal"
-      android:layout_centerHorizontal="true"
-      android:layout_width="match_parent"
-      android:layout_alignParentBottom="true"
-      android:layout_height="match_parent"
-      android:gravity="center|bottom">
 
-    <Button
-        android:id="@+id/addCartButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/product"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="5dp"
-        android:background="@color/colorAccent"
-        android:padding="10dp"
-        android:text="90 inches"
-        android:textColor="#FFFFFF"
-        android:onClick="toggleTv1" />
-
-    <Button
-        android:id="@+id/viewProductButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/product"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="5dp"
-        android:background="@color/colorPrimaryDark"
-        android:padding="10dp"
-        android:text="32 inches"
-        android:textColor="#FFFFFF"
-        android:onClick="toggleTv2" />
-  </LinearLayout>
 </FrameLayout>
