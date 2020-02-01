@@ -57,8 +57,8 @@ public class MultipleProductViewer extends AppCompatActivity {
 
   private int tvType = 0;
 
-    private Button button1 = (Button) findViewById(R.id.tv1);
-    private Button button2 = (Button) findViewById(R.id.tv2);
+    private Button button1;
+    private Button button2;
 
     public void toggleTv1(View view) {
         tvType = TV1;
@@ -113,6 +113,8 @@ public class MultipleProductViewer extends AppCompatActivity {
 
     setContentView(R.layout.activity_multiple);
     arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
+    button1 = findViewById(R.id.tv1);
+    button2 = findViewById(R.id.tv2);
 
     // When you build a Renderable, Sceneform loads its resources in the background while returning
     // a CompletableFuture. Call thenAccept(), handle(), or check isDone() before calling get().
