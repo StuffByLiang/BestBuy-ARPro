@@ -67,3 +67,18 @@ sceneform.asset('sampledata/models/tv2.fbx',
         'default',
         'sampledata/models/tv2.sfa',
         'src/main/res/raw/tv2')
+
+sceneform.asset('sampledata/models/scene.gltf',
+        'default',
+        'sampledata/models/scene.sfa',
+        'src/main/res/raw/scene')
+
+sceneform.asset('sampledata/models/scene2.gltf',
+        'default',
+        'sampledata/models/scene2.sfa',
+        'src/main/res/raw/scene2')
+
+sceneform.asset('sampledata/models/scene3.gltf',
+        'default',
+        'sampledata/models/scene3.sfa',
+        'src/main/res/raw/scene3')

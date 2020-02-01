@@ -56,7 +56,6 @@ public class MultipleProductViewer extends AppCompatActivity {
     private ModelRenderable tv2Renderable;
 
   private int tvType = 0;
-
     private Button button1;
     private Button button2;
 

@@ -1,0 +1,104 @@
+{
+  materials: [
+    {
+      name: 'Material',
+      parameters: [
+        {
+          baseColorFactor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColor: 'Material_baseColor',
+        },
+        {
+          diffuseColorFactor: null,
+        },
+        {
+          diffuseColor: null,
+        },
+        {
+          normal: 'Material_normal',
+        },
+        {
+          metallicFactor: 1,
+        },
+        {
+          roughnessFactor: 1,
+        },
+        {
+          specularFactor: null,
+        },
+        {
+          glossinessFactor: null,
+        },
+        {
+          specularGlossiness: null,
+        },
+        {
+          specularGlossinessCalculation: null,
+        },
+        {
+          metallicRoughness: 'Material_metallicRoughness',
+        },
+        {
+          occlusion: null,
+        },
+        {
+          emissiveFactor: [
+            0,
+            0,
+            0,
+            1,
+          ],
+        },
+        {
+          emissive: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/gltf_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+    ],
+    collision: {},
+    file: 'sampledata/models/scene2.gltf',
+    name: 'scene2',
+    recenter: 'root',
+    scale: 0.29270699999999999,
+  },
+  samplers: [
+    {
+      file: 'sampledata/models\\textures\\Material_baseColor.png',
+      name: 'Material_baseColor',
+      pipeline_name: 'textures/Material_baseColor.png',
+    },
+    {
+      file: 'sampledata/models\\textures\\Material_metallicRoughness.png',
+      name: 'Material_metallicRoughness',
+      params: {
+        usage_type: 'Data',
+      },
+      pipeline_name: 'textures/Material_metallicRoughness.png',
+    },
+    {
+      file: 'sampledata/models\\textures\\Material_normal.png',
+      name: 'Material_normal',
+      params: {
+        usage_type: 'Normal',
+      },
+      pipeline_name: 'textures/Material_normal.png',
+    },
+  ],
+  version: '0.54:2',
+}

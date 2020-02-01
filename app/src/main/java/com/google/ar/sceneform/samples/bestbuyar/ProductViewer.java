@@ -55,6 +55,12 @@ public class ProductViewer extends AppCompatActivity {
 
   private ArFragment arFragment;
   private ModelRenderable tvRenderable;
+  private ModelRenderable sceneRenderable;
+    private ModelRenderable scene2Renderable;
+    private ModelRenderable scene3Renderable;
+
+    private int type = 0;
+
 
 
     @Override
@@ -89,6 +95,45 @@ public class ProductViewer extends AppCompatActivity {
               return null;
             });
 
+        ModelRenderable.builder()
+                .setSource(this, R.raw.scene)
+                .build()
+                .thenAccept(renderable -> sceneRenderable = renderable)
+                .exceptionally(
+                        throwable -> {
+                            Toast toast =
+                                    Toast.makeText(this, "Unable to load tv renderable", Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
+                            return null;
+                        });
+
+        ModelRenderable.builder()
+                .setSource(this, R.raw.scene2)
+                .build()
+                .thenAccept(renderable -> scene2Renderable = renderable)
+                .exceptionally(
+                        throwable -> {
+                            Toast toast =
+                                    Toast.makeText(this, "Unable to load tv renderable", Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
+                            return null;
+                        });
+
+        ModelRenderable.builder()
+                .setSource(this, R.raw.scene3)
+                .build()
+                .thenAccept(renderable -> scene3Renderable = renderable)
+                .exceptionally(
+                        throwable -> {
+                            Toast toast =
+                                    Toast.makeText(this, "Unable to load tv renderable", Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
+                            return null;
+                        });
+
     arFragment.setOnTapArPlaneListener(
         (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
           if (tvRenderable == null) {
@@ -105,22 +150,29 @@ public class ProductViewer extends AppCompatActivity {
 
           // Create the transformable tv and add it to the anchor.
           TransformableNode tv = new TransformableNode(arFragment.getTransformationSystem());
-            float scaling = 0.0038f * DIMENSIONS;
-//            tv.setLocalScale(new Vector3(0.0038f * 1, 0.0038f * 1, 0.0038f * 1));
-//            tv.getScaleController().setMaxScale(scaling);
-//            tv.getScaleController().setMinScale(scaling);
-//
-//            if (plane.getType() == Plane.Type.VERTICAL) {
-//
-//                Vector3 anchor2 = anchorNode.getLeft();
-//                tv.setLookDirection(Vector3.left(), anchor2);
-//
-//                Vector3 anchor1 = anchorNode.getDown();
-//                tv.setLookDirection(Vector3.down(), anchor1);
-//            }
+            float scaling=1;
 
           tv.setParent(anchorNode);
-          tv.setRenderable(tvRenderable);
+          switch(type) {
+              case 0:
+                  scaling = 0.0038f * 60;
+                  tv.setRenderable(tvRenderable);
+                  break;
+              case 1:
+                  scaling = 0.0138f * 60;
+                  tv.setRenderable(sceneRenderable);
+                  break;
+              case 2:
+                  scaling = 0.0138f * 60;
+                  tv.setRenderable(scene2Renderable);
+                  break;
+              case 3:
+                  scaling = 0.0018f * 60;
+                  tv.setRenderable(scene3Renderable);
+                  break;
+          }
+
+          type++;
 
           tv.getScaleController().setMinScale(scaling);
           tv.getScaleController().setMaxScale(scaling+0.0001f);
