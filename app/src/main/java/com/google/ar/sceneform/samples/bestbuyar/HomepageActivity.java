@@ -73,12 +73,12 @@ public class HomepageActivity extends AppCompatActivity {
     }
 
     public void openCustom() {
-        Intent intent = new Intent(this, Custom.class);
+        Intent intent = new Intent(this, CustomActivity.class);
         startActivity(intent);
     }
 
     public void openCompare() {
-        Intent intent = new Intent(this, Custom.class);
+        Intent intent = new Intent(this, CompareActivity.class);
         startActivity(intent);
     }
 }

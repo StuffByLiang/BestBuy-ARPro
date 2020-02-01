@@ -4,34 +4,90 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/fieldLabel"
+        android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Choose products: "
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100sp"
+        android:layout_marginBottom="10sp"></TextView>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/checkboxes"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/label"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Input dimensions: ">
-    </TextView>
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-    <EditText
-        android:id="@+id/customDimensionsInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/fieldLabel"
-        android:layout_marginEnd="16dp"
-        android:inputType="number" />
+        <CheckBox android:id="@+id/checkbox_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Samsung 90” 4K LED Tizen Smart TV"
+            android:onClick="onCheckboxClicked"/>
+        <ImageView
+            android:layout_below="@id/welcomeSubtitle"
+            android:layout_marginBottom="15sp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tv1"
+            android:adjustViewBounds="true"
+            android:maxWidth="100sp"
+            android:maxHeight="100sp"
+            android:scaleType="fitCenter"/>
 
-    <Button
-        android:id="@+id/viewProductButton"
-        android:padding="10dp"
-        android:background="@color/colorPrimary"
-        android:textColor="#FFFFFF"
-        android:layout_margin="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/customDimensionsInput"
-        android:layout_centerHorizontal="true"
-        android:text="Compare these products" />
+        <CheckBox android:id="@+id/checkbox_tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LG 65” 4K UHD HDR OLED WebOS Smart TV"
+            android:onClick="onCheckboxClicked"/>
+        <ImageView
+            android:layout_below="@id/welcomeSubtitle"
+            android:layout_marginBottom="15sp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tv2"
+            android:adjustViewBounds="true"
+            android:maxWidth="100sp"
+            android:maxHeight="100sp"
+            android:scaleType="fitCenter"/>
+
+        <CheckBox android:id="@+id/checkbox_tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Toshiba 32” 720p LED TV"
+            android:onClick="onCheckboxClicked"/>
+        <ImageView
+            android:layout_below="@id/welcomeSubtitle"
+            android:layout_marginBottom="15sp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tv3"
+            android:adjustViewBounds="true"
+            android:maxWidth="100sp"
+            android:maxHeight="100sp"
+            android:scaleType="fitCenter"/>
+
+        <Button
+            android:id="@+id/viewCompareProducts"
+            android:padding="10dp"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFFFFF"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv3"
+            android:layout_centerHorizontal="true"
+            android:text="Compare these products" />
+
+    </LinearLayout>
 
 </RelativeLayout>

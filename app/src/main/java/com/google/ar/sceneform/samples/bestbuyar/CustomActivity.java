@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class Custom extends AppCompatActivity {
+public class CustomActivity extends AppCompatActivity {
     public static final String DIMENSIONS = "com.google.ar.sceneform.samples.bestbuyar";
 
     @Override

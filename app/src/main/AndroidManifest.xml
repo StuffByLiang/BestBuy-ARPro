@@ -28,7 +28,7 @@
         android:usesCleartextTraffic="false"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".CompareActivity"></activity>
-        <activity android:name=".Custom" />
+        <activity android:name=".CustomActivity" />
         <activity android:name=".TV1Activity" />
         <activity android:name=".TV2Activity" />
         <activity android:name=".TV3Activity" />
