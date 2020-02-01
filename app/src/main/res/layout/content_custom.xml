@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/fieldLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Input dimensions: ">
+    </TextView>
+
+    <EditText
+        android:id="@+id/customDimensionsInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/fieldLabel"
+        android:layout_marginEnd="16dp"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/viewProductButton"
+        android:padding="10dp"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="#FFFFFF"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/customDimensionsInput"
+        android:layout_centerHorizontal="true"
+        android:text="View product of this size" />
+
+</RelativeLayout>

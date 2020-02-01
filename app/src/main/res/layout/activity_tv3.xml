@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- <include layout="@layout/toolbar" android:id="@+id/toolbar"></include>-->
+
+    <TextView
+        android:textColor="#000000"
+        android:id="@+id/productTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Toshiba 32” 720p LED TV"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:id="@+id/product"
+        android:adjustViewBounds="true"
+        android:maxWidth="1000sp"
+        android:maxHeight="1000sp"
+        android:scaleType="fitCenter"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/productTitle"
+        android:src="@drawable/tv3" />
+
+    <TextView
+        android:id="@+id/priceText"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="$2,899"
+        android:layout_below="@id/product"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/suggestionsCaption"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="You might also like..."
+        android:layout_below="@id/priceText"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/productSuggestion"
+        android:adjustViewBounds="true"
+        android:maxWidth="100sp"
+        android:maxHeight="100sp"
+        android:scaleType="fitCenter"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/suggestionsCaption"
+        android:src="@drawable/tv2" />
+
+    <TextView
+        android:id="@+id/productSuggestionCaption"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="LG 65” 4K UHD HDR OLED WebOS Smart TV"
+        android:layout_below="@id/productSuggestion"
+        android:textSize="10sp" />
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_below="@id/suggestionsCaption"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true">
+    <Button
+        android:id="@+id/addCartButton"
+        android:padding="10dp"
+        android:background="@color/colorAccent"
+        android:textColor="#000000"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product"
+        android:layout_centerHorizontal="true"
+        android:text="Add to cart" />
+
+    <Button
+        android:id="@+id/viewProductButton"
+        android:padding="10dp"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="#FFFFFF"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product"
+        android:layout_centerHorizontal="true"
+        android:text="View this product" />
+    </LinearLayout>
+
+</RelativeLayout>
